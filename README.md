@@ -6,11 +6,12 @@ Paper "Streaming Algorithms for Optimal Generation of Random Bits."
 
 [arXiv:1209.0730](https://arxiv.org/abs/1209.0730)
 
+Disclaimer: I am not affiliated with the original authors of the paper above.
 
 I originally wrote this implementation as part of my science fair project,
 which was to create a low cost quantum random number generator (QRNG). The
 original code received a heavily biased input stream from a serial port, where
-the input values were actually the amount of 0s between the amount of 1s.
+the input values were the number of 0s between each 1.
 This wasn't a generally applicable form, and, seeing as there was no other
 implementation of the Random-Stream algorithm online, I thought it might be
 useful to others to rewrite the relevant portions and post them here.
@@ -25,18 +26,18 @@ of unknown bias and output a stream of unbiased binary values. (Bias in this
 case would be an uneven amount of 0s and 1s.)
 
 Traditionally, Von Neumann's algorithm is used to do this, however, Von
-Neuman's algorthm discards and wastes a large number of values, especially
+Neuman's algorithm discards and wastes a large number of values, especially
 for heavily biased input streams.
 
 Other algorithms, such as Peres's and Elias's extract maximum entropy
-(randomness) from an input, however the input for their algorithms must be a
+(randomness) from an input, however, the input for their algorithms must be a
 fixed number of input bits and not a streaming input. The Random-Stream
 algorithm allows for a streaming output, while simultaneously approaching
 the upper bound in extracting entropy. This may be useful for things such as
 random number generators where a streaming, unbiased output is needed.
 
 ## Example Usage
-The code should be relatively straight-forward. The code iterates through
+The code should be relatively straightforward. The code iterates through
 a string, "inputFlips" as if it were a streaming input, processing each value
 one-by-one. Because the paper uses input values of "H" and "T", representing
 H(eads) and T(ails), the code also does so.
